@@ -497,7 +497,7 @@ const CLIP_FILES = { Idle:'Idle.fbx', Walk:'Walk.fbx', Run:'Run.fbx', Attack:'At
 async function loadEnemyAssets(){
   if (ENEMY_READY) return true;
   try {
-    ENEMY_BASE = await fbxEnemyLoader.loadAsync('exo_red.fbx');
+    ENEMY_BASE = await fbxEnemyLoader.loadAsync('skin.fbx');
     ENEMY_BASE.scale.setScalar(ENEMY_SCALE);
     ENEMY_BASE.traverse(c=>{ if (c.isMesh) { c.castShadow = c.receiveShadow = true; }});
   } catch(e) { console.error('[Enemy] exo_red.fbx no cargó:', e); ENEMY_BASE=null; }
