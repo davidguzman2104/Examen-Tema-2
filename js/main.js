@@ -282,11 +282,25 @@ function controls(dt){
   const base = (playerOnFloor ? WALK_SPEED : AIR_SPEED) * (isRunning ? SPRINT_MULT : 1);
   const speed = dt * base;
 
-  if (keyStates['KeyW']) playerVelocity.add(getForwardVector().multiplyScalar(speed));
-  if (keyStates['KeyS']) playerVelocity.add(getForwardVector().multiplyScalar(-speed));
-  if (keyStates['KeyA']) playerVelocity.add(getSideVector().multiplyScalar(-speed));
-  if (keyStates['KeyD']) playerVelocity.add(getSideVector().multiplyScalar(speed));
-  if (playerOnFloor && keyStates['Space']) playerVelocity.y = JUMP_SPEED;
+  if (keyStates['KeyW'] || keyStates['ArrowUp']) {
+    playerVelocity.add(getForwardVector().multiplyScalar(speed));
+  }
+
+  if (keyStates['KeyS'] || keyStates['ArrowDown']) {
+    playerVelocity.add(getForwardVector().multiplyScalar(-speed));
+  }
+
+  if (keyStates['KeyA'] || keyStates['ArrowLeft']) {
+    playerVelocity.add(getSideVector().multiplyScalar(-speed));
+  }
+
+  if (keyStates['KeyD'] || keyStates['ArrowRight']) {
+    playerVelocity.add(getSideVector().multiplyScalar(speed));
+  }
+
+  if (playerOnFloor && keyStates['Space']) {
+    playerVelocity.y = JUMP_SPEED;
+  }
 }
 function teleportPlayerIfOob(){
   if (camera.position.y <= -25) {
